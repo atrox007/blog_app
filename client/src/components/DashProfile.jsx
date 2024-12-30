@@ -9,6 +9,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, signoutSuccess, updateFailure, updateStart, updateSuccess } from '../redux/user/userSlice.js';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 
 export default function DashProfile() {
     // @ts-ignore
@@ -205,10 +206,21 @@ export default function DashProfile() {
             type='submit'
             gradientDuoTone='purpleToPink'
             outline
-            //disabled={loading || imageFileUploading}
+            disabled={loading || imageFileUploading}
             >
             {loading ? 'Loading...' : 'Update'}
             </Button>
+            {currentUser.isAdmin && (
+              <Link to={'/create-post'}>
+                <Button
+                  type='button'
+                  gradientDuoTone='greenToBlue'
+                  className='w-full'
+                >
+                  Create a post
+                </Button>
+              </Link>
+          )}
         </form>
         <div className='text-red-400 flex justify-between mt-5'>
             <span onClick={() => setShowModal(true)} className='cursor-pointer'> Delete Account</span>
