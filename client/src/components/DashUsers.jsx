@@ -109,7 +109,7 @@ export default function DashUsers() {
                     <span
                       onClick={() => {
                         setShowModal(true);
-                        setUserdToDelete(user._id);
+                        setUserIdToDelete(user._id);
                       }}
                       className='font-medium text-red-400 hover:underline cursor-pointer'
                     >
