@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Alert, Button, Textarea } from 'flowbite-react';
+import Comment from './Comment.jsx';
 
 export default function CommentSection({postId}) {
     // @ts-ignore
@@ -44,6 +45,21 @@ export default function CommentSection({postId}) {
           setCommentError(error.message);
         }
     };
+
+    useEffect(() => {
+      const getComments = async () => {
+        try {
+          const res = await fetch(`/api/comment/getPostComments/${postId}`);
+          if (res.ok) {
+            const data = await res.json();
+            setComments(data);
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      getComments();
+    }, [postId]);
 
   return (
     <div>
@@ -99,17 +115,33 @@ export default function CommentSection({postId}) {
             </Alert>
           )}
         </form>
-      )}
+    )}
+
       {comments.length === 0 ? (
         <p className='text-sm my-5'>No comments yet!</p>
       ) : (
         <>
           <div className='text-sm my-5 flex items-center gap-1'>
             <p>Comments</p>
-            <div className='border border-gray-400 py-1 px-2 rounded-sm'>
+            <div className='border border-teal-500 py-1 px-2 rounded-sm'>
               <p>{comments.length}</p>
             </div>
           </div>
+
+          {comments.map((comment) => (
+            <Comment
+              // @ts-ignore
+              key={comment._id}
+              comment={comment}
+              // onLike={handleLike}
+              // onEdit={handleEdit}
+              // onDelete={(commentId) => {
+              //   setShowModal(true);
+              //   setCommentToDelete(commentId);
+              // }}
+            />
+          ))}
+
         </>
       )}
 
