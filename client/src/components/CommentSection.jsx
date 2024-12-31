@@ -61,6 +61,37 @@ export default function CommentSection({postId}) {
       getComments();
     }, [postId]);
 
+    const handleLike = async (commentId) => {
+      try {
+        if (!currentUser) {
+          navigate('/sign-in');
+          return;
+        }
+        const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+          method: 'PUT',
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setComments(
+            // @ts-ignore
+            comments.map((comment) =>
+              // @ts-ignore
+              comment._id === commentId
+                ? {
+                    // @ts-ignore
+                    ...comment,
+                    likes: data.likes,
+                    numberOfLikes: data.likes.length,
+                  }
+                : comment
+            )
+          );
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
   return (
     <div>
         {currentUser ? (
@@ -133,7 +164,7 @@ export default function CommentSection({postId}) {
               // @ts-ignore
               key={comment._id}
               comment={comment}
-              // onLike={handleLike}
+              onLike={handleLike}
               // onEdit={handleEdit}
               // onDelete={(commentId) => {
               //   setShowModal(true);
