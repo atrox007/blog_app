@@ -6,11 +6,11 @@ export default function About() {
       <div className='max-w-2xl mx-auto p-3 text-center'>
         <div>
           <h1 className='text-3xl font font-semibold text-center my-7'>
-            About My Blog
+            About WonderIt Blog
           </h1>
           <div className='text-md text-gray-500 flex flex-col gap-6'>
             <p>
-              Welcome to My Blog! This blog was created by Ashutosh Kumar as a personal project to share his thoughts and ideas with the world. Ashutosh is a passionate developer who loves to code.
+              Welcome to WonderIt Blog! This blog was created by Ashutosh Kumar as a personal project to share his thoughts and ideas with the world. Ashutosh is a passionate developer who loves to code.
             </p>
 
             <p>
