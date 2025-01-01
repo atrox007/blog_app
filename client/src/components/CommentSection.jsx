@@ -92,6 +92,16 @@ export default function CommentSection({postId}) {
       }
     };
 
+    const handleEdit = async (comment, editedContent) => {
+      setComments(
+        // @ts-ignore
+        comments.map((c) =>
+          // @ts-ignore
+          c._id === comment._id ? { ...c, content: editedContent } : c
+        )
+      );
+    };
+
   return (
     <div>
         {currentUser ? (
@@ -165,7 +175,7 @@ export default function CommentSection({postId}) {
               key={comment._id}
               comment={comment}
               onLike={handleLike}
-              // onEdit={handleEdit}
+              onEdit={handleEdit}
               // onDelete={(commentId) => {
               //   setShowModal(true);
               //   setCommentToDelete(commentId);
