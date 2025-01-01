@@ -45,7 +45,7 @@ export default function SignUp() {
         {/* left */}
         <div className='flex-1'>
         <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-            <span className='px-2 py-1 bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-400 rounded-lg text-yellow-200'>My</span>
+            <span className='px-2 py-1 bg-gradient-to-r from-green-600 via-teal-500 to-blue-400 rounded-lg text-green-200'>WonderIt</span>
             Blog
         </Link>
           <p className='text-sm mt-5'>
@@ -83,7 +83,7 @@ export default function SignUp() {
                 />
               </div>
               <Button
-                gradientDuoTone='purpleToPink'
+                gradientDuoTone='greenToBlue'
                 type='submit'
                 disabled={loading}>
                 {loading ? (
